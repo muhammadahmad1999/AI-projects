@@ -18,3 +18,19 @@ Three of the most common transfer functions:
 * For the elements of the weight matrix, the first index indicates the particular neuron destination for that weight while the second index indicate the source of the signal that was fed to the neuron.
 * For example, the indices in $w_{1,2}$ mean that this weight represents the connection to the first and only neuron from the second element (source) in the input vector.
 * the input vector $\bold{p}$ has dimensions $R \times 1$ while for the single neuron example the weight matrix $\bold{W}$ has dimensions $1 \times R$.
+* the weight matrix $\bold{W}$ has $R$ columns but only one row in the single neuron case
+
+## Layer of neurons
+* A layer has $S$ neurons
+* Each of the $R$ inputs is connected to each of the neurons and the weight matrix has $S$ rows - this does not need to be the case i.e. $R$ does not have to equal $S$.
+* the output from a layer forms the vector $\bold{a}$
+
+## Multiple layers of neurons
+* the superscript identifies the layers the weight matrix belongs to: $\bold{W}^2$ refers the the weight matrix for the second layer.
+* There are $R$ inputs, $S^1$ neurons in the first layer, $S^2$ neurons in the second layer etc.
+* a laer whose output is the network output is called the output layer while the other layers are called hidden layers.
+
+## Recurrent Networks
+* Delay block: the output is the input delayed by one time step - time is updated in discrete steps and takes integer values. The output needs to be initialised at time $t = 0$: $$\bold{a}(t) = \bold{u}(t-1)$$
+* Integrator block: integrates the input $$\bold{a}(t) = \int^t_0\bold{u}(\tau) d\tau + \bold{a}(0)$$
+* an example of a recurrent network: $$\bold{a}(0) = \bold{p}$$ $$\bold{a}(t + 1) = satlins(\bold{Wa}(t) + \bold{b})$$
